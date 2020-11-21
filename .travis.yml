@@ -3,9 +3,9 @@ os: linux
 dist: bionic
 arch: amd64 
 sudo: false
-lang: ruby
 notifications:
   email: false
+lang: ruby
 rvm:
   - 2.4.1
   - 2.5
@@ -13,4 +13,11 @@ rvm:
   - 2.7
   - jruby
   - jruby-9.2
-
+before_install:
+  - cd ruby-pipeline/app1
+script:
+  - bundle exec rake
+after_success:
+  # Upload to CoPilot
+  - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
+  - deactivate
