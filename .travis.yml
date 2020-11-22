@@ -9,52 +9,53 @@ matrix:
   include:  
 
 # TESTED  OK    
-    - name: "build gradle w findbugs blackduckcopilot  on bionic arm64"
-      dist: bionic
-      arch: amd64 
-      sudo: required        
-      language: java
-      jdk:
-      - openjdk8
-      cache:
-        directories:
-          - '$HOME/.m2/repository'
-          - '$HOME/.gradle'
-      before_install:
-        - java -version
-        - gradle -v
-        - cd app4 && chmod +x gradlew
-      script:
-        - ./gradlew assemble
-        - ./gradlew check
-      after_success:
-        # Upload to CoPilot
-        - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
-        - deactivate
+    # - name: "build gradle w findbugs blackduckcopilot  on bionic arm64"
+    #   dist: bionic
+    #   arch: amd64 
+    #   sudo: required        
+    #   language: java
+    #   jdk:
+    #   - openjdk8
+    #   cache:
+    #     directories:
+    #       - '$HOME/.m2/repository'
+    #       - '$HOME/.gradle'
+    #   before_install:
+    #     - java -version
+    #     - gradle -v
+    #     - cd app4 && chmod +x gradlew
+    #   script:
+    #     - ./gradlew assemble
+    #     - ./gradlew check
+    #   after_success:
+    #     # Upload to CoPilot
+    #     - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
+    #     - deactivate
 
 
  # TESTED OK 
-    - name: "build gradle w make findbugs blackduckcopilot  on bionic arm64"
-      dist: bionic
-      arch: amd64 
-      sudo: required        
-      language: java
-      jdk:
-      - openjdk8
-      cache:
-      directories:
-        - '$HOME/.m2/repository'
-        - '$HOME/.gradle'
-      before_install:
-        - java -version
-        - gradle -v
-      script:
-        - sudo make deploy-app4
-      after_success:
-        # Upload to CoPilot
-        - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
-        - deactivate      
+    # - name: "build gradle w make findbugs blackduckcopilot  on bionic arm64"
+    #   dist: bionic
+    #   arch: amd64 
+    #   sudo: required        
+    #   language: java
+    #   jdk:
+    #   - openjdk8
+    #   cache:
+    #   directories:
+    #     - '$HOME/.m2/repository'
+    #     - '$HOME/.gradle'
+    #   before_install:
+    #     - java -version
+    #     - gradle -v
+    #   script:
+    #     - sudo make deploy-app4
+    #   after_success:
+    #     # Upload to CoPilot
+    #     - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
+    #     - deactivate      
 
+        
     - name: "build maven wrapper w blackduckcopilot  on bionic arm64"
       dist: bionic
       arch: amd64 
@@ -64,7 +65,7 @@ matrix:
       - openjdk8
       before_install:
         - java -version
-        - maven -v
+        - mvn --version
         - cd maven-pipeline/app1
       # script:
       #   - sudo make deploy-app4
@@ -73,23 +74,42 @@ matrix:
         - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
         - deactivate 
 
-    - name: "build ruby w blackduckcopilot  on bionic arm64"
+    - name: "build maven w blackduckcopilot  on bionic arm64"
       dist: bionic
       arch: amd64 
       sudo: required        
-      language: ruby
-      rvm:
-        - 2.4.1
-        - 2.5
-        - 2.6
-        - 2.7
-        - jruby
-        - jruby-9.2
+      language: java
+      jdk:
+      - openjdk8
       before_install:
-        - cd ruby-pipeline/app1
-      script:
-        - bundle exec rake
+        - java -version
+        - mvn --version
+        - cd maven-pipeline/app2
+      # script:
+      #   - sudo make deploy-app4
       after_success:
         # Upload to CoPilot
         - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
-        - deactivate    
+        - deactivate 
+
+ # TESTED OK         
+    # - name: "build ruby w blackduckcopilot  on bionic arm64"
+    #   dist: bionic
+    #   arch: amd64 
+    #   sudo: required        
+    #   language: ruby
+    #   rvm:
+    #     - 2.4.1
+    #     - 2.5
+    #     - 2.6
+    #     - 2.7
+    #     - jruby
+    #     - jruby-9.2
+    #   before_install:
+    #     - cd ruby-pipeline/app1
+    #   script:
+    #     - bundle exec rake
+    #   after_success:
+    #     # Upload to CoPilot
+    #     - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
+    #     - deactivate    
