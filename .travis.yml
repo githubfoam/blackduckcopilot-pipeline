@@ -15,8 +15,8 @@ rvm:
   - jruby-9.2
 before_install:
   - cd ruby-pipeline/app1
+  - gem install redcarpet -v '3.5.0' --source 'https://rubygems.org/'  
 script:
-  - gem install redcarpet -v '3.5.0' --source 'https://rubygems.org/'
   - bundle exec rake
 after_success:
   # Upload to CoPilot
