@@ -59,7 +59,7 @@ matrix:
     - name: "build maven wrapper w blackduckcopilot  on bionic arm64"
       dist: bionic
       arch: amd64 
-      sudo: required        
+      sudo: false        
       language: java
       jdk:
       - openjdk8
@@ -68,7 +68,7 @@ matrix:
         - mvn --version
         - cd maven-pipeline/app1
       # script:
-      #   - sudo make deploy-app4
+      #   - sudo ./mvnw
       after_success:
         # Upload to CoPilot
         - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
@@ -86,32 +86,30 @@ matrix:
       before_install:
         - java -version
         - mvn --version
-        - cd maven-pipeline/maven-checkstyle        
+        - cd maven-pipeline/app3        
       script:
-        # - cd maven-checkstyle
         - mvn checkstyle:checkstyle
       after_success:
             # Upload to CoPilot
         - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
         - deactivate
 
-    - name: "build maven w blackduckcopilot  on bionic arm64"
-      dist: bionic
-      arch: amd64 
-      sudo: required        
-      language: java
-      jdk:
-      - openjdk8
-      before_install:
-        - java -version
-        - mvn --version
-        - cd maven-pipeline/app2
-      # script:
-      #   - sudo make deploy-app4
-      after_success:
-        # Upload to CoPilot
-        - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
-        - deactivate 
+# TESTED OK 
+    # - name: "build maven w blackduckcopilot  on bionic arm64"
+    #   dist: bionic
+    #   arch: amd64 
+    #   sudo: required        
+    #   language: java
+    #   jdk:
+    #   - openjdk8
+    #   before_install:
+    #     - java -version
+    #     - mvn --version
+    #     - cd maven-pipeline/app2
+    #   after_success:
+    #     # Upload to CoPilot
+    #     - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
+    #     - deactivate 
 
  # TESTED OK         
     # - name: "build ruby w blackduckcopilot  on bionic arm64"
