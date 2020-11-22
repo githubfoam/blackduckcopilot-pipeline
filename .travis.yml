@@ -67,7 +67,7 @@ matrix:
         - java -version
         - mvn --version
         - cd maven-pipeline/app1
-        - sudo ./mvnw
+        # - sudo ./mvnw
       # script:
       #   - sudo ./mvnw
       after_success:
