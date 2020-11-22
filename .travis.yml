@@ -67,9 +67,10 @@ matrix:
         - java -version
         - mvn --version
         - cd maven-pipeline/app1
+        - chmod +x mvnw
         # - sudo ./mvnw
       # script:
-      #   - sudo ./mvnw
+      #   - sudo make deploy-app1
       after_success:
         # Upload to CoPilot
         - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
