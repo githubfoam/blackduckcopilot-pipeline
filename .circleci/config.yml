@@ -32,7 +32,9 @@ jobs:
       - run:
           name: "fingerprint OS"
           command: |
-            hostnamectl status
+            # System has not been booted with systemd as init system (PID 1). Can't operate.
+            # hostnamectl status
+            uname -a
       - run:
           name: "build gradle w findbugs blackduckcopilot  on bionic arm64"
           command: |
