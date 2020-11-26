@@ -5,7 +5,7 @@ orbs:
 
 jobs:
   
-  build-and-test:
+  build-virtualenv:
     executor: python/default
     steps:
       - checkout
@@ -23,7 +23,7 @@ jobs:
             source ~venvpy3/bin/activate
             pip install -r requirements.txt
   
-  build-minikube:
+  build-gradle:
     docker:
       - image: circleci/openjdk:8-jdk
     working_directory: ~/repo         
@@ -50,24 +50,19 @@ jobs:
             cd app4 && chmod +x gradlew
             ./gradlew assemble
             ./gradlew check
+
+  upload-copilot:
+    executor: python/default
+    steps:
       - deploy:
+          name: "build gradle w findbugs blackduckcopilot"
           command: bash <(curl -s https://copilot.blackducksoftware.com/ci/circle2/scripts/upload)
-
-  # build-argocd:
-  #   executor: python/default          
-  #   steps:
-  #     - run:
-  #         name: Deploy argocd
-  #         command: |
-  #           echo "===============================deploy argocd finished==========================================================="        
-
 workflows:
   version: 2
   commit-parallel-workflow:
     jobs:
-      - build-and-test
-      - build-minikube
-      # - build-argocd
+      - build-virtualenv
+      - build-gradle
   scheduled-workflow:
     triggers:
       - schedule:        
@@ -78,6 +73,5 @@ workflows:
               - feature_circleci
 
     jobs:
-      - build-and-test
-      - build-minikube
-      # - build-argocd
+      - build-virtualenv
+      - build-gradle
