@@ -60,7 +60,7 @@ workflows:
           filters:
             branches:
               only: 
-              - dev
+              - feature_circleci
 
     jobs:
       - build-and-test
