@@ -59,7 +59,6 @@ workflows:
     jobs:
       - build-virtualenv
       - build-gradle
-      - upload-copilot
   scheduled-workflow:
     triggers:
       - schedule:        
@@ -72,4 +71,3 @@ workflows:
     jobs:
       - build-virtualenv
       - build-gradle
-      - upload-copilot
