@@ -29,10 +29,10 @@ jobs:
     working_directory: ~/repo         
     steps:
       - setup_remote_docker        
-      - run:
-          name: "fingerprint OS"
-          command: |
-            hostnamectl
+      # - run:
+      #     name: "fingerprint OS"
+      #     command: |
+      #       hostnamectl
       - run:
           name: "build gradle w findbugs blackduckcopilot  on bionic arm64"
           command: |
