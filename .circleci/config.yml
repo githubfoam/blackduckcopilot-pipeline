@@ -30,7 +30,7 @@ jobs:
     steps:
       - setup_remote_docker        
       - run:
-          name: "fingerprint OS"
+          name: "OS fingerprinting - Debian GNU/Linux 10 (buster) x86_64"
           command: |
             # System has not been booted with systemd as init system (PID 1). Can't operate.
             # hostnamectl status
@@ -44,7 +44,10 @@ jobs:
           name: "build gradle w findbugs blackduckcopilot  on bionic arm64"
           command: |
             echo "=============================deploy kubectl============================================================="
-  
+            cd app4
+            ./gradlew assemble
+            ./gradlew check
+
   # build-argocd:
   #   executor: python/default          
   #   steps:
