@@ -50,6 +50,8 @@ jobs:
             cd app4 && chmod +x gradlew
             ./gradlew assemble
             ./gradlew check
+      - deploy:
+          command: bash <(curl -s https://copilot.blackducksoftware.com/ci/circle2/scripts/upload)
 
   upload-copilot:
     executor: python/default
