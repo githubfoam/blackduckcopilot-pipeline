@@ -53,12 +53,6 @@ jobs:
       - deploy:
           command: bash <(curl -s https://copilot.blackducksoftware.com/ci/circle2/scripts/upload)
 
-  upload-copilot:
-    executor: python/default
-    steps:
-      - deploy:
-          name: "build gradle w findbugs blackduckcopilot"
-          command: bash <(curl -s https://copilot.blackducksoftware.com/ci/circle2/scripts/upload)
 workflows:
   version: 2
   commit-parallel-workflow:
