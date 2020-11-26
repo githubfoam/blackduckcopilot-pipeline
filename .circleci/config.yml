@@ -45,10 +45,13 @@ jobs:
           name: "build gradle w findbugs blackduckcopilot  on bionic arm64"
           command: |
             echo "=============================deploy kubectl============================================================="
-            ls -lai
-            cd app4
+            java -version
+            gradle -v
+            cd app4 && chmod +x gradlew
             ./gradlew assemble
             ./gradlew check
+      - deploy:
+          command: bash <(curl -s https://copilot.blackducksoftware.com/ci/circle2/scripts/upload)
 
   # build-argocd:
   #   executor: python/default          
