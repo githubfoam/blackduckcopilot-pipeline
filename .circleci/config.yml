@@ -37,7 +37,7 @@ jobs:
             uname -a
             #lsb_release -a #lsb_release: command not found
             #lsb_release -d  #display the description
-            cat /etc/lsb-release
+            #cat /etc/lsb-release #/etc/lsb-release: No such file or directory
             cat /etc/issue
             cat /etc/os-release
       - run:
