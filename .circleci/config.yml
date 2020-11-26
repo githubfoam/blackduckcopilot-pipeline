@@ -35,8 +35,8 @@ jobs:
             # System has not been booted with systemd as init system (PID 1). Can't operate.
             # hostnamectl status
             uname -a
-            lsb_release -a #lsb_release: command not found
-            lsb_release -d  #display the description
+            #lsb_release -a #lsb_release: command not found
+            #lsb_release -d  #display the description
             cat /etc/lsb-release
             cat /etc/issue
             cat /etc/os-release
