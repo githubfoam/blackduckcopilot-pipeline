@@ -51,6 +51,7 @@ jobs:
             ./gradlew assemble
             ./gradlew check
       - deploy:
+          name: "upload copilot"
           command: bash <(curl -s https://copilot.blackducksoftware.com/ci/circle2/scripts/upload)
 
 workflows:
