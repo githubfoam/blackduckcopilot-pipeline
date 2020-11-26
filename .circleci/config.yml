@@ -62,7 +62,7 @@ workflows:
           filters:
             branches:
               only: 
-              - feature_circleci
+              - test
 
     jobs:
       - build-virtualenv

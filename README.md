@@ -3,7 +3,6 @@
 circleci main  branch:  
 [![CircleCI](https://circleci.com/gh/githubfoam/blackduckcopilot-pipeline/tree/feature_circleci.svg?style=svg)](https://circleci.com/gh/githubfoam/blackduckcopilot-pipeline/tree/feature_circleci)
 
-
 travisci main  branch:  
 [![Build Status](https://travis-ci.com/githubfoam/blackduckcopilot-pipeline.svg?branch=main)](https://travis-ci.com/githubfoam/blackduckcopilot-pipeline)  
 
