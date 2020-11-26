@@ -55,14 +55,14 @@ workflows:
     jobs:
       - build-virtualenv
       - build-gradle
-  scheduled-workflow:
-    triggers:
-      - schedule:        
-          cron: "0,15,30,45 * * * *" # three times every hour, at minutes 0, 15, 30, 45
-          filters:
-            branches:
-              only: 
-              - test
+  # scheduled-workflow:
+  #   triggers:
+  #     - schedule:        
+  #         cron: "0,15,30,45 * * * *" # three times every hour, at minutes 0, 15, 30, 45
+  #         filters:
+  #           branches:
+  #             only: 
+  #             - test
 
     jobs:
       - build-virtualenv
