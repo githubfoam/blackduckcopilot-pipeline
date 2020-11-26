@@ -1,0 +1,68 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+
+jobs:
+  
+  build-and-test:
+    executor: python/default
+    steps:
+      - checkout
+      - python/load-cache
+      - python/install-deps
+      - python/save-cache
+      - run:
+          name: Create virtualenv
+          command: |
+            python -V
+            python3 -V
+            pip3 --version
+            pip3 install virtualenv
+            virtualenv -p $(which python3) ~venvpy3
+            source ~venvpy3/bin/activate
+            pip install -r requirements.txt
+  
+  build-minikube:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    working_directory: ~/repo         
+    steps:
+      - setup_remote_docker        
+      - run:
+          name: "fingerprint OS"
+          command: |
+            hostnamectl
+      - run:
+          name: "build gradle w findbugs blackduckcopilot  on bionic arm64"
+          command: |
+            echo "=============================deploy kubectl============================================================="
+  
+  # build-argocd:
+  #   executor: python/default          
+  #   steps:
+  #     - run:
+  #         name: Deploy argocd
+  #         command: |
+  #           echo "===============================deploy argocd finished==========================================================="        
+
+workflows:
+  version: 2
+  commit-parallel-workflow:
+    jobs:
+      - build-and-test
+      - build-minikube
+      # - build-argocd
+  scheduled-workflow:
+    triggers:
+      - schedule:        
+          cron: "0,15,30,45 * * * *" # three times every hour, at minutes 0, 15, 30, 45
+          filters:
+            branches:
+              only: 
+              - dev
+
+    jobs:
+      - build-and-test
+      - build-minikube
+      # - build-argocd
