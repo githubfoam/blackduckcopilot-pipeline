@@ -39,7 +39,7 @@ jobs:
       - run:
           name: "build gradle w findbugs blackduckcopilot  on bionic arm64"
           command: |
-            echo "=============================deploy kubectl============================================================="
+            echo "=============================build gradle============================================================="
             java -version
             gradle -v
             cd app4 && chmod +x gradlew
