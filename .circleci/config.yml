@@ -97,7 +97,8 @@ jobs:
             # maven -v #maven: command not found 
             cd maven-pipeline/app4
             # mvn clean clover:setup test clover:aggregate clover:clover
-            mvn clean
+            mvn clean #ensure that all sources will be recompiled (Clover uses source-code instrumentation) 
+            mvn clover:setup #initialize Clover and instrument sources
 
 workflows:
   version: 2
