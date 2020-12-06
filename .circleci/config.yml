@@ -95,11 +95,37 @@ jobs:
             echo "=============================deploy maven w openclover============================================================="
             java -version
             # maven -v #maven: command not found 
+            # cd maven-pipeline/app4
+            # # mvn clean clover:setup test clover:aggregate clover:clover
+            # #http://openclover.org/doc/manual/latest/maven--quick-start-guide.html
+            # mvn clean #ensure that all sources will be recompiled (Clover uses source-code instrumentation) 
+            # mvn clover:setup #initialize Clover and instrument sources
+            # mvn test #compile code, run tests and record code coverage
+            # mvn clover:aggregate #merge coverage data from a multi-module project
+            # mvn clover:clover #generate HTML report for a project,find a report in target/site/clover directory. 
+      - run:
+          name: "mvn clean #ensure that all sources will be recompiled (Clover uses source-code instrumentation) "
+          command: |
+            echo "=============================mvn clean============================================================="
+            java -version
             cd maven-pipeline/app4
-            # mvn clean clover:setup test clover:aggregate clover:clover
             #http://openclover.org/doc/manual/latest/maven--quick-start-guide.html
             mvn clean #ensure that all sources will be recompiled (Clover uses source-code instrumentation) 
+      - run:
+          name: "mvn clover - setup #initialize Clover and instrument sources"
+          command: |
+            echo "=============================mvn clover============================================================="
+            java -version
+            cd maven-pipeline/app4
+            #http://openclover.org/doc/manual/latest/maven--quick-start-guide.html
             mvn clover:setup #initialize Clover and instrument sources
+      - run:
+          name: "mvn test - compile code, run tests and record code coverage"
+          command: |
+            echo "=============================mvn test============================================================="
+            java -version
+            cd maven-pipeline/app4
+            # #http://openclover.org/doc/manual/latest/maven--quick-start-guide.html
             mvn test #compile code, run tests and record code coverage
 
 workflows:
