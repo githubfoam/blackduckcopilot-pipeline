@@ -94,7 +94,7 @@ jobs:
           command: |
             echo "=============================deploy gradle w clover============================================================="
             java -version
-            maven -v
+            # maven -v #maven: command not found 
             cd maven-pipeline/app4
             mvn clean clover:setup test clover:aggregate clover:clover
 
