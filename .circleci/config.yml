@@ -76,13 +76,36 @@ jobs:
             cd app6 && chmod +x gradlew
             gradle clean test cloverGenerateReport
 
+  build-maven-openclover:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    working_directory: ~/repo         
+    steps:
+      - setup_remote_docker        
+      - run:
+          name: "OS fingerprinting - Debian GNU/Linux 10 (buster) x86_64"
+          command: |
+            uname -a
+            cat /etc/issue
+            cat /etc/os-release
+      - checkout
+      - run:
+          name: "build gradle w clover  on Debian GNU/Linux 10 (buster) x86_64"
+          command: |
+            echo "=============================deploy gradle w clover============================================================="
+            java -version
+            gradle -v
+            cd maven-pipeline/app4
+            mvn clean clover:setup test clover:aggregate clover:clover
+
 workflows:
   version: 2
   commit-parallel-workflow:
     jobs:
       # - build-virtualenv
       # - build-gradle
-      - build-gradle-clover      
+      # - build-gradle-clover
+      - build-maven-openclover      
       
   # scheduled-workflow:
   #   triggers:
