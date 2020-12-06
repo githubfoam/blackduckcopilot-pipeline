@@ -59,7 +59,8 @@ workflows:
   scheduled-workflow:
     triggers:
       - schedule:        
-          cron: "0,15,30,45 * * * *" # three times every hour, at minutes 0, 15, 30, 45
+          # cron: "0,15,30,45 * * * *" # three times every hour, at minutes 0, 15, 30, 45
+          cron: "0 0 1 * *" # once a month
           filters:
             branches:
               only: 
