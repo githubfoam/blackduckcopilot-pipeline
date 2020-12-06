@@ -92,11 +92,12 @@ jobs:
       - run:
           name: "build maven w openclover  on Debian GNU/Linux 10 (buster) x86_64"
           command: |
-            echo "=============================deploy gradle w clover============================================================="
+            echo "=============================deploy maven w openclover============================================================="
             java -version
             # maven -v #maven: command not found 
             cd maven-pipeline/app4
-            mvn clean clover:setup test clover:aggregate clover:clover
+            # mvn clean clover:setup test clover:aggregate clover:clover
+            mvn clean
 
 workflows:
   version: 2
