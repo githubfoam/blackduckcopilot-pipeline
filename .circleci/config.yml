@@ -25,6 +25,7 @@ jobs:
   
   build-gradle:
     docker:
+      # the primary container, where your job's commands are run
       - image: circleci/openjdk:8-jdk
     working_directory: ~/repo         
     steps:
