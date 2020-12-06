@@ -14,21 +14,4 @@ public class SimpleTest extends TestCase
         Properties props = new Properties();
         props.load(getClass().getResourceAsStream("/com/atlassian/maven/plugin/clover/samples/simple/test.properties"));
     }
-}package com.simple;
-
-public class Simple
-{
-    public void someMethod()
-    {
-        assert true == true : "true was not true";
-
-        // Reference a class that we exclude in the instrumentation
-        new Dummy();
-
-        int i = 0;
-        if (i > 0)
-        {
-            i = i + 1;
-        }
-    }
 }

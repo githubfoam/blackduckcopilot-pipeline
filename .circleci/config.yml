@@ -90,11 +90,11 @@ jobs:
             cat /etc/os-release
       - checkout
       - run:
-          name: "build gradle w clover  on Debian GNU/Linux 10 (buster) x86_64"
+          name: "build maven w openclover  on Debian GNU/Linux 10 (buster) x86_64"
           command: |
             echo "=============================deploy gradle w clover============================================================="
             java -version
-            gradle -v
+            maven -v
             cd maven-pipeline/app4
             mvn clean clover:setup test clover:aggregate clover:clover
 
