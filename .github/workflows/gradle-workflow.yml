@@ -1,4 +1,4 @@
-name: "osmatrix"
+name: "gradle findbugs blackduckcopilot workflow"
 
 on:
   push:
@@ -11,13 +11,14 @@ on:
 jobs:
 
   linux-job:
+    name: "build gradle w findbugs blackduckcopilot"
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v1
     - name: os fingerprinting
       run: hostnamectl status
-    - name: "build gradle w findbugs codecov on - Debian GNU/Linux 10 (buster) x86_64"
+    - name: "build gradle w findbugs blackduckcopilot on - Debian GNU/Linux 10 (buster) x86_64"
       run: |
             echo "=============================build gradle w findbugs blackduckcopilot============================================================="
             java -version
@@ -29,18 +30,3 @@ jobs:
     - name: "upload blackduckcopilot"
       run: bash <(curl -s https://copilot.blackducksoftware.com/ci/circle2/scripts/upload)
 
-  windows-job:
-    runs-on: windows-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-
-  macos-job:
-    runs-on: macos-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
