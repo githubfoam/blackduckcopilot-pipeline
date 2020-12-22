@@ -1,4 +1,4 @@
-name: "gradle findbugs blackduckcopilot workflow"
+name: "gradle blackduckcopilot workflow"
 
 on:
   push:
