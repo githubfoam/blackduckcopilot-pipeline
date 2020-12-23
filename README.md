@@ -18,4 +18,5 @@ travisci rvm matrix:
 ~~~~
 https://gradle.org/
 http://maven.apache.org/
+https://github.com/marketplace/actions/owasp-zap-full-scan
 ~~~~
